@@ -12,15 +12,13 @@ public class Client implements IClient{
 
     HttpClient client = HttpClient.newHttpClient();
 
-    public HttpResponse<String> getPokemon(String pokemon){
+    public HttpResponse<String> sendRequest(String endpoint, String method){
 
-        String newURL = BASE_URL + pokemon;
+        //String newURL = BASE_URL + pokemon;
 
-        HttpRequest request = HttpRequest.newBuilder()
-            .GET()
-            .timeout(Duration.ofSeconds(10))
-            .uri(URI.create(newURL))
-            .build();
+        //usar create request para pegar uma requisição
+
+        //passar a requisição no try catch abaixo
 
         
 
@@ -32,8 +30,16 @@ public class Client implements IClient{
         }
 
         return null;
-        
+    }
 
+    public HttpRequest createRequest() {
+        //public enum String {}
+
+        //criar um enum de metodos
+
+        //receber esse metodo pelo parametro 
+
+        //fazer um switch e instaciar uma requisição que será usada, baseada no metodo
     }
 
 }
