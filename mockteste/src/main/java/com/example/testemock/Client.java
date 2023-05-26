@@ -1,26 +1,18 @@
 package com.example.testemock;
 
-import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
 
 public class Client implements IClient{
 
-    public static final String BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
+    public static final String BASE_URL = "https://pokeapi.co/api/v2/";
 
     HttpClient client = HttpClient.newHttpClient();
 
-    public HttpResponse<String> sendRequest(String endpoint, String method){
+    public HttpResponse<String> sendRequest(String endpoint, String body, String method){
 
-        //String newURL = BASE_URL + pokemon;
-
-        //usar create request para pegar uma requisição
-
-        //passar a requisição no try catch abaixo
-
-        
+        HttpRequest request = createRequest(BASE_URL + endpoint, body, method);        
 
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -32,14 +24,23 @@ public class Client implements IClient{
         return null;
     }
 
-    public HttpRequest createRequest() {
-        //public enum String {}
+    public HttpRequest createRequest(String endpoint, String body, String method) {
 
-        //criar um enum de metodos
+        HttpRequest req = null;
+        IRequest creator = null;
+        
+        switch(method){
+            case "POST":
+                creator = new PostRequest();
+                req = creator.generateRequest(endpoint, body);
+                break;
+            case "GET":
+                creator = new GetRequest();
+                req = creator.generateRequest(endpoint, body);
+                break;
+        }
 
-        //receber esse metodo pelo parametro 
-
-        //fazer um switch e instaciar uma requisição que será usada, baseada no metodo
+        return req;
     }
 
 }
