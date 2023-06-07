@@ -16,7 +16,7 @@ public class PokedexTest {
         //COLOCAR PRA DEVOLVER O JSON NO STUB
         // TESTAR SE QUANDO A FUNÇÃO É CHAMADA O RETORNO CONDIZ, DENTRO DO STUB
         Client cliente = Mockito.mock(Client.class);
-        Mockito.when(cliente).sendRequest()
+        //git Mockito.when(cliente).sendRequest()
         Assertions.assertTrue( true );
     }
     
